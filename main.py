@@ -9,16 +9,26 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-current_year = datetime.now().year
-established_year = datetime(year=1920, month=1, day=1).year
-
 
 def get_correct_year_ending(year):
-    pass
+    lastTwoDigits = year % 100
+    tens = lastTwoDigits // 10
+    if tens == 1:
+        return 'лет'
+    ones = lastTwoDigits % 10
+    if ones == 1:
+        return 'год'
+    if 2 <= ones <= 4:
+        return 'года'
+    return 'лет'
 
+
+current_year = datetime.now().year
+established_year = datetime(year=1920, month=1, day=1).year
+years_delta = current_year - established_year
 
 rendered_page = template.render(
-    winery_age=current_year - established_year
+    winery_age=f'{years_delta} {get_correct_year_ending(years_delta)}'
 )
 
 with open('index.html', 'w', encoding="utf8") as file:
