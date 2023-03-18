@@ -31,7 +31,7 @@ established_year = datetime(year=1920, month=1, day=1).year
 years_delta = current_year - established_year
 
 wine2_dict = pd.read_excel('wine2.xlsx', na_values='', keep_default_na=False)
-wine2_dict_agg = wine2_dict.groupby("Категория").apply(lambda dd: dd.to_dict('i')).to_dict()
+wine2_dict_agg = wine2_dict.groupby("Категория").apply(lambda dd: dd.to_dict(orient="records")).to_dict()
 print(wine2_dict_agg)
 
 
