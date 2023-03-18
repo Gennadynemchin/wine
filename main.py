@@ -1,6 +1,8 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import datetime
+import pandas as pd
+import pprint
 
 env = Environment(
     loader=FileSystemLoader('.'),
@@ -23,12 +25,19 @@ def get_correct_year_ending(year):
     return 'лет'
 
 
+wine_dict = pd.read_excel('wine.xlsx', na_values='', keep_default_na=False).to_dict(orient="records")
 current_year = datetime.now().year
 established_year = datetime(year=1920, month=1, day=1).year
 years_delta = current_year - established_year
 
+wine2_dict = pd.read_excel('wine2.xlsx', na_values='', keep_default_na=False)
+wine2_dict_agg = wine2_dict.groupby("Категория").apply(lambda dd: dd.to_dict('i')).to_dict()
+print(wine2_dict_agg)
+
+
 rendered_page = template.render(
-    winery_age=f'{years_delta} {get_correct_year_ending(years_delta)}'
+    winery_age=f'{years_delta} {get_correct_year_ending(years_delta)}',
+    wine_dict=wine_dict
 )
 
 with open('index.html', 'w', encoding="utf8") as file:
