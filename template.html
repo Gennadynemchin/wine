@@ -112,27 +112,27 @@
             <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
             </p>
           </div>
-          {% for category, drinks in wine_dict.items() %}
+          {% for category, bottles in drinks.items() %}
           <div class="col-12 section-title text-center mb-5">
             <h2 class="d-block">{{category}}</h2>
             <div class="row">
-            {% for drink in drinks %}
+            {% for bottle in bottles %}
               <div class="col-lg-4 mb-5 col-md-6">
                 <div class="wine_v_1 text-center pb-4 pt-5">
-                  <img src="images/{{drink['Картинка']}}" alt="Image" class="img-fluid">
-                  {% if drink['Акция'] %}
+                  <img src="images/{{bottle['Картинка']}}" alt="Image" class="img-fluid">
+                  {% if bottle['Акция'] %}
                   <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                   {% endif %}
                   <div>
-                    <h3 class="heading mt-3 mb-3 text-dark">{{drink['Название']}}</h3>
-                    {% if drink['Сорт'] == '' %}
+                    <h3 class="heading mt-3 mb-3 text-dark">{{bottle['Название']}}</h3>
+                    {% if bottle['Сорт'] == '' %}
                     <p>
-                      <span class="price">{{drink['Цена']}} р.</span>
+                      <span class="price">{{bottle['Цена']}} р.</span>
                     </p>
                     {% else %}
                     <p>
-                      Сорт винограда - {{drink['Сорт']}}<br/>
-                      <span class="price">{{drink['Цена']}} р.</span>
+                      Сорт винограда - {{bottle['Сорт']}}<br/>
+                      <span class="price">{{bottle['Цена']}} р.</span>
                     </p>
                     {% endif %}
                   </div>
