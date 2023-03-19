@@ -122,10 +122,18 @@
                   <img src="images/{{drink['Картинка']}}" alt="Image" class="img-fluid">
                   <div>
                     <h3 class="heading mt-3 mb-3 text-dark">{{drink['Название']}}</h3>
+                    {% if drink['Сорт'] == '' %}
+                    <p>
+                      Сорт винограда - Not available<br/>
+                      <span class="price">{{drink['Цена']}} р.</span>
+                    </p>
+                    {% else %}
                     <p>
                       Сорт винограда - {{drink['Сорт']}}<br/>
                       <span class="price">{{drink['Цена']}} р.</span>
                     </p>
+                    {% endif %}
+
                   </div>
                 </div>
               </div>
