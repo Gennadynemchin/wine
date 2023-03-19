@@ -32,12 +32,17 @@ years_delta = current_year - established_year
 
 wine2_dict = pd.read_excel('wine2.xlsx', na_values='', keep_default_na=False)
 wine2_dict_agg = wine2_dict.groupby("Категория").apply(lambda wine: wine.to_dict(orient="records")).to_dict()
-print(wine2_dict_agg)
+
+for category, drinks in wine2_dict_agg.items():
+    print(category)
+    for drink in drinks:
+        print(drink['Название'])
+
 
 
 rendered_page = template.render(
     winery_age=f'{years_delta} {get_correct_year_ending(years_delta)}',
-    wine_dict=wine_dict
+    wine_dict=wine2_dict_agg
 )
 
 with open('index.html', 'w', encoding="utf8") as file:
