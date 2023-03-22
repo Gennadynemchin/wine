@@ -17,6 +17,10 @@ source env/bin/activate
 ```
 env\Scripts\activate.bat
 ```
+Установите зависимости:
+```
+pip install -r requirements.txt
+```
 - Скопируйте excel файл в корень проекта. В проекте есть пример файла - 
 ```wine_example.xlsx```
 - пропишите имя excel файла в ```.env.example.``` Перед запуском необходимо
