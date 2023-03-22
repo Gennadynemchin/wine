@@ -1,5 +1,7 @@
+import os
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from dotenv import load_dotenv
 from datetime import datetime
 import pandas as pd
 
@@ -24,6 +26,8 @@ def get_wine(excel):
 
 
 def main():
+    load_dotenv()
+    excel_wine = os.getenv('EXCEL_PATH')
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
@@ -36,7 +40,7 @@ def main():
 
     rendered_page = template.render(
         winery_age=f'{years_delta} {get_correct_year_ending(years_delta)}',
-        drinks=get_wine('wine3.xlsx')
+        drinks=get_wine(excel_wine)
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
