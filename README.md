@@ -21,9 +21,9 @@ env\Scripts\activate.bat
 ```
 pip install -r requirements.txt
 ```
-- Скопируйте excel файл в корень проекта. В проекте есть пример файла - 
-```wine_example.xlsx```
-- пропишите имя excel файла в ```.env.example.``` Перед запуском необходимо
+- Скопируйте excel файл в корень проекта. В проекте уже есть пример файла - 
+```wine_example.xlsx```. Вы можете запустить сайт с ним.
+- пропишите имя excel файла в ```.env.example.``` или оставьте имеющийся сэмпл. Перед запуском необходимо
 переименовать ```.env.example``` в ```.env```. Пример содержимого файла ```.env```:
 ```
 EXCEL_PATH='<NAME_OF_xlsx_IN_CURRENT_DIRECTORY>'
