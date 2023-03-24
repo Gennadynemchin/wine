@@ -22,13 +22,13 @@ def get_correct_year_ending(year):
 
 def get_wine(excel):
     drinks = pd.read_excel(excel, na_values='None', keep_default_na=False)
-    drinks_aggregated = drinks.groupby("Категория").apply(lambda wine: wine.to_dict(orient="records")).to_dict()
-    return drinks_aggregated
+    aggregated_drinks = drinks.groupby("Категория").apply(lambda wine: wine.to_dict(orient="records")).to_dict()
+    return aggregated_drinks
 
 
 def main():
     load_dotenv()
-    excel_wine = os.getenv('wine_example.xlsx')
+    excel_wine = os.getenv('EXCEL_PATH')
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
