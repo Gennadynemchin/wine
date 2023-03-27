@@ -28,7 +28,7 @@ def get_wine(excel):
 
 def main():
     load_dotenv()
-    excel_wine = os.getenv('EXCEL_PATH')
+    excel_wine = os.getenv('EXCEL_PATH', default="wine_example.xlsx")
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
